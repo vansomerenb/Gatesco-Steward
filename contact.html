@@ -42,44 +42,55 @@
     <div class="container">
       <p class="breadcrumb"><a href="index.html">Home</a> / Contact</p>
       <span class="section-label">Get started</span>
-      <h1>Talk to an expert today</h1>
-      <p style="max-width: 560px; color: rgba(246,244,239,0.85);">Tell us about your asset, portfolio, or RFP. Our institutional team responds within one business day.</p>
+      <h1>Contact Us Today</h1>
+      <p style="max-width: 560px; color: rgba(246,244,239,0.85);">We work directly with owners, lenders, special servicers, asset managers, and institutional equity partners to extend Gatesco, Inc.’s vertically integrated platform to multifamily assets in Greater Houston.</p>
     </div>
   </section>
 
   <section class="section section--white">
     <div class="container">
-      <div class="contact-grid fade-in">
-        <div class="contact-info">
-          <h2>Institutional inquiries</h2>
-          <p style="color: var(--slate);">We work directly with lenders, special servicers, asset managers, and institutional equity partners—bringing Gatesco, Inc.’s vertically integrated platform (10,000+ units of PM, unit turns, and building rehab) to distressed multifamily assets in Greater Houston.</p>
-          <h3>Email</h3>
-          <p class="contact-detail"><a href="mailto:institutional@gatescosteward.com" style="color: var(--gold);">institutional@gatescosteward.com</a></p>
-          <h3>Parent company</h3>
-          <p class="contact-detail"><a href="https://www.gatescoinc.com" target="_blank" rel="noopener" style="color: var(--gold);">Gatesco, Inc.</a></p>
-          <h3>What to include</h3>
-          <ul class="diff-list">
-            <li>Property name, location, and unit count</li>
-            <li>Loan status (REO, pre-foreclosure, performing watchlist)</li>
-            <li>Desired services and reporting requirements</li>
-            <li>Target timeline for takeover or disposition</li>
-          </ul>
-        </div>
-        <div class="contact-form">
-          <form action="#" method="post">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="first-name">First name</label>
-                <input type="text" id="first-name" name="first-name" required>
-              </div>
-              <div class="form-group">
-                <label for="last-name">Last name</label>
-                <input type="text" id="last-name" name="last-name" required>
+      <div class="contact-grid fade-in" style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start;">
+        
+        <!-- Contact Info (Left Side) -->
+        <div class="contact-info" style="background: #0a1428; color: #f6f4ef; padding: 2.5rem; border-radius: 8px;">
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+              <span style="font-size: 1.75rem;">📍</span>
+              <div>
+                <strong style="font-size: 1.25rem;">Gatesco Steward Partners</strong><br>
+                555 Richmond Rd<br>
+                Richmond, TX 77406
               </div>
             </div>
+          </div>
+          
+          <div style="margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="font-size: 1.5rem;">✉️</span>
+              <div>
+                <a href="mailto:institutional@gatescosteward.com" style="color: #f6f4ef; text-decoration: none; font-size: 1.1rem;">
+                  institutional@gatescosteward.com
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <span style="font-size: 1.5rem;">📞</span>
+              <a href="tel:7135555555" style="color: #f6f4ef; text-decoration: none; font-size: 1.35rem; font-weight: 600;">
+                713-555-5555
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Simplified Contact Form (Right Side) -->
+        <div class="contact-form">
+          <form action="#" method="post">
             <div class="form-group">
-              <label for="company">Company / Institution</label>
-              <input type="text" id="company" name="company" required>
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -87,22 +98,11 @@
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone">
+              <input type="tel" id="phone" name="phone" required>
             </div>
             <div class="form-group">
-              <label for="interest">Area of interest</label>
-              <select id="interest" name="interest">
-                <option value="">Select a service</option>
-                <option value="property-management">Property Management</option>
-                <option value="asset-management">Asset Management</option>
-                <option value="construction">Construction &amp; Renovations</option>
-                <option value="financial-reporting">Financial Reporting</option>
-                <option value="full-platform">Full integrated platform</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Asset / portfolio details</label>
-              <textarea id="message" name="message" placeholder="Brief description of the asset, location, unit count, and timeline..."></textarea>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell us about your asset, portfolio, or how we can help..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Submit Inquiry</button>
           </form>
