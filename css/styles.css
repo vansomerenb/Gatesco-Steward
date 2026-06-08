@@ -896,24 +896,27 @@ p:last-child { margin-bottom: 0; }
     margin-bottom: 0;
   }
 
-  /* Mobile menu panel - Slides from the RIGHT with transparent background */
+  /* Mobile menu panel - Slides from the RIGHT with high contrast background */
   .nav-main {
     position: fixed;
-    top: 0;                    /* Span from the very top of screen */
-    right: 0;                  /* Anchor to the right edge */
-    width: 300px;              /* Fixed width panel */
-    height: 100vh;             /* Take up full screen height */
-    background: transparent !important; /* Transparent background */
-    backdrop-filter: blur(20px); /* Optional: Adds a premium glass blur over page content */
+    top: 0;                    
+    right: 0;                  
+    width: 300px;              
+    height: 100vh;             
+    
+    /* CHANGE THIS: Increased opacity for better text contrast */
+    background: rgba(10, 15, 30, 0.92) !important; /* Adjust the RGB numbers to match your theme */
+    
+    backdrop-filter: blur(20px); 
     flex-direction: column;
-    padding: calc(var(--header-height) + 2rem) 2rem 2rem; /* Pad top so links clear hamburger icon */
+    padding: calc(var(--header-height) + 2rem) 2rem 2rem; 
     gap: 3rem;
-    transform: translateX(100%); /* Hidden completely off-screen to the right */
+    transform: translateX(100%); 
     opacity: 0;
     visibility: hidden;
     transition: var(--transition);
     z-index: 999;
-    overflow-y: auto;          /* Scroll pane if content is exceptionally long */
+    overflow-y: auto;          
   }
 
   /* Slide in active state along X-axis */
@@ -957,6 +960,25 @@ p:last-child { margin-bottom: 0; }
     padding-right: 1rem;       /* Padding on right side due to right alignment */
   }
 
+  /* Fix shifting text and properly offset the mobile submenu */
+  .nav-dropdown-menu {
+    width: 100%;               /* Ensure it takes full width for alignment */
+    margin-top: 0.5rem;        /* Small vertical offset below "Services" */
+    padding: 0;                /* Reset default padding */
+  }
+
+  /* Reset all hover animations/shifts from the desktop styling */
+  .nav-dropdown-menu a,
+  .nav-dropdown-menu a:hover {
+    transform: none !important;      /* Stops any side-to-side moving/sliding */
+    padding-left: 0 !important;      /* Stops any left-side padding shifts */
+    margin-left: 0 !important;       /* Stops any left-side margin shifts */
+    padding-right: 1.5rem !important; /* Visual offset to the left (moves it away from the right edge) */
+    display: block;                  /* Ensures clean vertical stacking */
+    text-align: right;               /* Keeps it aligned with the panel flow */
+  }
+
+
   .nav-dropdown.open .nav-dropdown-menu {
     display: block;
   }
@@ -980,3 +1002,63 @@ p:last-child { margin-bottom: 0; }
     width: 100%;
   }
 }
+
+
+/* 1. HIDE THE SUBMENU BY DEFAULT */
+  .nav-main .nav-dropdown-menu {
+    display: none !important; /* Forces it hidden until clicked */
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    height: auto !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* 2. ONLY SHOW THE SUBMENU WHEN "SERVICES" IS CLICKED (.open state) */
+  .nav-main .nav-dropdown.open .nav-dropdown-menu {
+    display: block !important; /* Instantly pops open on click */
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important; /* Keeps text from clipping */
+  }
+
+  /* 3. COMPLETELY LOCK SUBMENU LINKS TO PREVENT ALL SIDE-TO-SIDE MOVEMENT */
+  .nav-main .nav-dropdown-menu a,
+  .nav-main .nav-dropdown-menu a:hover,
+  .nav-main .nav-dropdown-menu a:active,
+  .nav-main .nav-dropdown-menu a:focus {
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+    position: static !important;
+    display: block !important;
+    
+    /* Lock typography styles so text structure cannot change width */
+    font-weight: normal !important; 
+    letter-spacing: normal !important;
+    text-shadow: none !important;
+    
+    /* Force strict right alignment inside the layout panel */
+    text-align: right !important;
+    width: 100% !important;
+    
+    /* Structural padding and margins reset to baseline values */
+    margin: 0 !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    padding-left: 0 !important;
+    
+    /* Visual offset to the left of "Services" using static right padding */
+    padding-right: 1.5rem !important; 
+    
+    /* Elegant static colors */
+    color: var(--gold) !important;
+    opacity: 0.85 !important;
+  }
+
+  /* 4. SAFE HOVER STATE (FADES BRIGHTER INSTEAD OF SHIFTING MARGINS) */
+  .nav-main .nav-dropdown-menu a:hover {
+    opacity: 1 !important;
+  }
