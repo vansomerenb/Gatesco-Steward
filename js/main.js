@@ -65,13 +65,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // NEW: Click outside mobile menu to close it
-  window.addEventListener('click', (e) => {
+  // UPDATED: Changed from window to document listener to guarantee iPhone compatibility
+  document.addEventListener('click', (e) => {
     if (navMain && navMain.classList.contains('is-active')) {
       // Check if the click happened outside BOTH the navigation pane and the hamburger button
       if (!navMain.contains(e.target) && !menuToggle.contains(e.target)) {
         navMain.classList.remove('is-active');
-        menuToggle.setAttribute('aria-expanded', 'false');
+        if (menuToggle) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+        
+        // OPTIONAL: Closes open dropdown accordions inside the menu when closing the drawer
+        dropdowns.forEach((trigger) => {
+          trigger.parentElement.classList.remove('open');
+        });
       }
     }
   });
