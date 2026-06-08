@@ -860,13 +860,6 @@ p:last-child { margin-bottom: 0; }
   transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-  .process-steps { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
 /* Responsive - Mobile Menu */
 @media (max-width: 768px) {
   /* Ensure the header container layers properly */
@@ -904,10 +897,9 @@ p:last-child { margin-bottom: 0; }
     width: 300px;              
     height: 100vh;             
     
-    /* CHANGE THIS: Increased opacity for better text contrast */
-    background: rgba(10, 15, 30, 0.92) !important; /* Adjust the RGB numbers to match your theme */
+    /* BACKDROP BLUR REMOVED TO PREVENT IPHONE COLOR DISTORTION */
+    background: rgba(10, 15, 30, 0.92) !important; 
     
-    backdrop-filter: blur(20px); 
     flex-direction: column;
     padding: calc(var(--header-height) + 2rem) 2rem 2rem; 
     gap: 3rem;
@@ -978,7 +970,6 @@ p:last-child { margin-bottom: 0; }
     text-align: right;               /* Keeps it aligned with the panel flow */
   }
 
-
   .nav-dropdown.open .nav-dropdown-menu {
     display: block;
   }
@@ -1003,62 +994,61 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
-
 /* 1. HIDE THE SUBMENU BY DEFAULT */
-  .nav-main .nav-dropdown-menu {
-    display: none !important; /* Forces it hidden until clicked */
-    position: static !important;
-    transform: none !important;
-    width: auto !important;
-    height: auto !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-    margin-top: 0.75rem !important;
-    margin-bottom: 0.5rem !important;
-  }
+.nav-main .nav-dropdown-menu {
+  display: none !important; /* Forces it hidden until clicked */
+  position: static !important;
+  transform: none !important;
+  width: auto !important;
+  height: auto !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+}
 
-  /* 2. ONLY SHOW THE SUBMENU WHEN "SERVICES" IS CLICKED (.open state) */
-  .nav-main .nav-dropdown.open .nav-dropdown-menu {
-    display: block !important; /* Instantly pops open on click */
-    visibility: visible !important;
-    opacity: 1 !important;
-    overflow: visible !important; /* Keeps text from clipping */
-  }
+/* 2. ONLY SHOW THE SUBMENU WHEN "SERVICES" IS CLICKED (.open state) */
+.nav-main .nav-dropdown.open .nav-dropdown-menu {
+  display: block !important; /* Instantly pops open on click */
+  visibility: visible !important;
+  opacity: 1 !important;
+  overflow: visible !important; /* Keeps text from clipping */
+}
 
-  /* 3. COMPLETELY LOCK SUBMENU LINKS TO PREVENT ALL SIDE-TO-SIDE MOVEMENT */
-  .nav-main .nav-dropdown-menu a,
-  .nav-main .nav-dropdown-menu a:hover,
-  .nav-main .nav-dropdown-menu a:active,
-  .nav-main .nav-dropdown-menu a:focus {
-    transform: none !important;
-    transition: none !important;
-    animation: none !important;
-    position: static !important;
-    display: block !important;
-    
-    /* Lock typography styles so text structure cannot change width */
-    font-weight: normal !important; 
-    letter-spacing: normal !important;
-    text-shadow: none !important;
-    
-    /* Force strict right alignment inside the layout panel */
-    text-align: right !important;
-    width: 100% !important;
-    
-    /* Structural padding and margins reset to baseline values */
-    margin: 0 !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-    padding-left: 0 !important;
-    
-    /* Visual offset to the left of "Services" using static right padding */
-    padding-right: 1.5rem !important; 
-    
-    /* Elegant static colors */
-    color: var(--gold) !important;
-    opacity: 0.85 !important;
-  }
+/* 3. COMPLETELY LOCK SUBMENU LINKS TO PREVENT ALL SIDE-TO-SIDE MOVEMENT */
+.nav-main .nav-dropdown-menu a,
+.nav-main .nav-dropdown-menu a:hover,
+.nav-main .nav-dropdown-menu a:active,
+.nav-main .nav-dropdown-menu a:focus {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  position: static !important;
+  display: block !important;
+  
+  /* Lock typography styles so text structure cannot change width */
+  font-weight: normal !important; 
+  letter-spacing: normal !important;
+  text-shadow: none !important;
+  
+  /* Force strict right alignment inside the layout panel */
+  text-align: right !important;
+  width: 100% !important;
+  
+  /* Structural padding and margins reset to baseline values */
+  margin: 0 !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: 0 !important;
+  
+  /* Visual offset to the left of "Services" using static right padding */
+  padding-right: 1.5rem !important; 
+  
+  /* Elegant static colors */
+  color: var(--gold) !important;
+  opacity: 0.85 !important;
+}
 
-  /* 4. SAFE HOVER STATE (FADES BRIGHTER INSTEAD OF SHIFTING MARGINS) */
-  .nav-main .nav-dropdown-menu a:hover {
-    opacity: 1 !important;
-  }
+/* 4. SAFE HOVER STATE (FADES BRIGHTER INSTEAD OF SHIFTING MARGINS) */
+.nav-main .nav-dropdown-menu a:hover {
+  opacity: 1 !important;
+}
