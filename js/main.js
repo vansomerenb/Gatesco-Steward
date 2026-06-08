@@ -1,22 +1,30 @@
+// Updated main.js
 document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('.site-header');
   const menuToggle = document.querySelector('.menu-toggle');
   const navMain = document.querySelector('.nav-main');
   const dropdowns = document.querySelectorAll('.nav-dropdown > a');
 
+  // Scroll header effect
   if (header) {
     window.addEventListener('scroll', () => {
       header.classList.toggle('scrolled', window.scrollY > 40);
     });
   }
 
+  // Hamburger menu
   if (menuToggle && navMain) {
-    menuToggle.addEventListener('click', () => {
-      const open = navMain.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', open);
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevents the click from instantly triggering the click-outside close listener
+      const isOpen = navMain.classList.toggle('is-active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      
+      // Removed body scroll lock for now
+      // document.body.style.overflow = isOpen ? 'hidden' : '';
     });
   }
 
+  // Mobile dropdowns
   dropdowns.forEach((trigger) => {
     trigger.addEventListener('click', (e) => {
       if (window.innerWidth <= 768) {
@@ -26,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Fade-in observer
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -39,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
+  // Demo contact form
   const form = document.querySelector('.contact-form form');
   if (form) {
     form.addEventListener('submit', (e) => {
@@ -54,4 +64,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 4000);
     });
   }
+
+  // NEW: Click outside mobile menu to close it
+  window.addEventListener('click', (e) => {
+    if (navMain && navMain.classList.contains('is-active')) {
+      // Check if the click happened outside BOTH the navigation pane and the hamburger button
+      if (!navMain.contains(e.target) && !menuToggle.contains(e.target)) {
+        navMain.classList.remove('is-active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
 });

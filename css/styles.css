@@ -867,69 +867,116 @@ p:last-child { margin-bottom: 0; }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Responsive - Mobile Menu */
 @media (max-width: 768px) {
-  .menu-toggle { display: flex; }
+  /* Ensure the header container layers properly */
+  .site-header {
+    z-index: 1002 !important;
+  }
 
+  /* Hamburger button */
+  .menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; 
+  }
+
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--navy) !important;
+    margin-bottom: 5px;
+    transition: var(--transition);
+  }
+
+  .menu-toggle span:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Mobile menu panel - Slides from the RIGHT with transparent background */
   .nav-main {
     position: fixed;
-    top: var(--header-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--cream);
+    top: 0;                    /* Span from the very top of screen */
+    right: 0;                  /* Anchor to the right edge */
+    width: 300px;              /* Fixed width panel */
+    height: 100vh;             /* Take up full screen height */
+    background: transparent !important; /* Transparent background */
+    backdrop-filter: blur(20px); /* Optional: Adds a premium glass blur over page content */
     flex-direction: column;
-    padding: 2rem;
-    gap: 1.5rem;
-    transform: translateX(100%);
-    transition: transform var(--transition);
+    padding: calc(var(--header-height) + 2rem) 2rem 2rem; /* Pad top so links clear hamburger icon */
+    gap: 3rem;
+    transform: translateX(100%); /* Hidden completely off-screen to the right */
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 999;
+    overflow-y: auto;          /* Scroll pane if content is exceptionally long */
   }
 
-  .nav-main.open {
+  /* Slide in active state along X-axis */
+  .nav-main.is-active {
     transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
   }
 
+  /* Navigation links layout */
   .nav-links {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 2rem;
     width: 100%;
+    text-align: right;        /* Align text right to match panel flow */
   }
 
+  /* Hides the 'Speak with our team' button link inside the mobile nav drawer */
+  .nav-main .btn {
+    display: none !important;
+  }
+
+  /* Forces GOLD font color when menu is active for ALL links, including hover and active states */
+  .nav-main.is-active .nav-links a,
+  .nav-main.is-active .nav-links a:hover,
+  .nav-main.is-active .nav-links a.active {
+    color: var(--gold) !important;
+    font-size: 1.25rem;
+  }
+
+  /* Dropdowns layout updates */
   .nav-dropdown-menu {
     position: static;
     transform: none;
-    opacity: 1;
-    visibility: visible;
     box-shadow: none;
     border: none;
-    padding-left: 1rem;
+    background: rgba(255, 255, 255, 0.05); /* Very faint tint for readability */
+    opacity: 1;
+    visibility: visible;
     display: none;
+    padding-right: 1rem;       /* Padding on right side due to right alignment */
   }
 
   .nav-dropdown.open .nav-dropdown-menu {
     display: block;
   }
 
+  /* Structural block overrides from original stylesheet */
   .grid-2,
   .grid-3,
+  .grid-4,
+  .process-steps,
+  .hero-stats,
   .contact-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
   }
 
-  .hero-stats {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .hero-actions {
+    flex-direction: column;
   }
 
-  .hero-stats > div {
-    padding: 0.5rem 0;
-  }
-
-  .feature-grid,
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
+  .btn {
+    width: 100%;
   }
 }
