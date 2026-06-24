@@ -848,6 +848,291 @@ p:last-child { margin-bottom: 0; }
   font-size: 0.85rem;
 }
 
+/* Tagline */
+.tagline {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--gold);
+  margin-top: 1.25rem;
+}
+
+.section--dark .tagline {
+  color: var(--gold-light);
+}
+
+/* Situation cards */
+.situation-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.situation-card {
+  padding: 2rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  border-left: 3px solid var(--gold);
+}
+
+.situation-card h4 {
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+
+.situation-card p {
+  font-size: 0.95rem;
+  color: var(--slate);
+  margin: 0;
+}
+
+/* Platform advantage */
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.platform-item {
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.platform-item .platform-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.platform-item h4 {
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.platform-item p {
+  font-size: 0.9rem;
+  color: rgba(246, 244, 239, 0.75);
+  margin: 0;
+}
+
+/* Mandate callout */
+.mandate-callout {
+  margin-top: 2.5rem;
+  padding: 2rem;
+  background: rgba(184, 149, 74, 0.12);
+  border: 1px solid rgba(184, 149, 74, 0.3);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.mandate-callout h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.mandate-callout p {
+  font-size: 1rem;
+  color: rgba(246, 244, 239, 0.85);
+  margin: 0;
+}
+
+/* Playbook */
+.playbook-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+.playbook-phase {
+  padding: 1.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.playbook-phase .phase-days {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 0.35rem;
+}
+
+.playbook-phase h4 {
+  color: var(--white);
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+.playbook-phase ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.playbook-phase li {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(246, 244, 239, 0.75);
+  line-height: 1.45;
+}
+
+.playbook-phase li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* Stats band */
+.stats-band {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.stats-band .stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.stats-band .stat-label {
+  font-size: 0.85rem;
+  color: var(--slate);
+  margin-top: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Case study */
+.case-study-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.case-study-stat {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--cream);
+  border-radius: 4px;
+}
+
+.case-study-stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--navy);
+  margin-bottom: 0.35rem;
+}
+
+.case-study-stat span {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Leadership */
+.leadership-grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.leader-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding: 2.5rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.leader-photo {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.leader-photo img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+.leader-info h3 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.leader-info p {
+  color: var(--slate);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* Reporting dashboard preview */
+.dashboard-preview {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.dashboard-metric {
+  padding: 1.25rem;
+  background: var(--navy);
+  color: var(--cream);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.dashboard-metric .metric-value {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.dashboard-metric .metric-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 239, 0.7);
+  margin-top: 0.25rem;
+}
+
+.dashboard-metric .metric-delta {
+  font-size: 0.8rem;
+  color: rgba(246, 244, 239, 0.6);
+  margin-top: 0.35rem;
+}
+
 /* Animations */
 .fade-in {
   opacity: 0;
@@ -980,9 +1265,20 @@ p:last-child { margin-bottom: 0; }
   .grid-4,
   .process-steps,
   .hero-stats,
-  .contact-grid {
+  .contact-grid,
+  .situation-grid,
+  .platform-grid,
+  .playbook-grid,
+  .stats-band,
+  .case-study-stats,
+  .dashboard-preview,
+  .leader-card {
     grid-template-columns: 1fr !important;
     gap: 2rem;
+  }
+
+  .leader-card {
+    padding: 1.5rem;
   }
 
   .hero-actions {
@@ -994,6 +1290,8 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
+/* Mobile dropdown accordion — desktop uses hover in .nav-dropdown:hover rules above */
+@media (max-width: 768px) {
 /* 1. HIDE THE SUBMENU BY DEFAULT */
 .nav-main .nav-dropdown-menu {
   display: none !important; /* Forces it hidden until clicked */
@@ -1051,4 +1349,5 @@ p:last-child { margin-bottom: 0; }
 /* 4. SAFE HOVER STATE (FADES BRIGHTER INSTEAD OF SHIFTING MARGINS) */
 .nav-main .nav-dropdown-menu a:hover {
   opacity: 1 !important;
+}
 }
