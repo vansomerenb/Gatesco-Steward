@@ -937,28 +937,6 @@ p:last-child { margin-bottom: 0; }
   margin: 0;
 }
 
-/* Value proposition grid (Why lenders hire GSP) */
-.value-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
-
-.value-grid .platform-item h4 {
-  font-size: 1.05rem;
-}
-
-.value-grid .platform-item p {
-  line-height: 1.55;
-}
-
-@media (max-width: 768px) {
-  .value-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Mandate callout */
 .mandate-callout {
   margin-top: 2.5rem;
