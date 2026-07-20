@@ -27,4 +27,26 @@ Open http://localhost:8080
 
 ## Deployment
 
-Upload the folder to any static host (Netlify, Vercel, AWS S3, GoDaddy, etc.) or integrate into WordPress/Divi like the parent Gatesco site.
+**Live site:** https://gatescosp.com  
+**Fallback (GitHub Pages):** https://vansomerenb.github.io/Gatesco-Steward/
+
+The site is a static site hosted on **GitHub Pages** from this repo (`main` branch, root).
+
+### Custom domain (gatescosp.com)
+
+Domain is registered at **Squarespace Domains**. DNS must point at GitHub Pages:
+
+| Type | Host | Value |
+|------|------|--------|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `vansomerenb.github.io` |
+
+1. Squarespace → Domains → `gatescosp.com` → DNS / Advanced settings  
+2. Remove default Squarespace parking A/CNAME records for `@` and `www`  
+3. Add the records above  
+4. In GitHub: repo **Settings → Pages → Custom domain** = `gatescosp.com`, enable **Enforce HTTPS** once DNS verifies  
+
+`CNAME` in the repo root keeps the custom domain wired after deploys.
