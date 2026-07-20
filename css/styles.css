@@ -1014,16 +1014,53 @@ p:last-child { margin-bottom: 0; }
   background: var(--gold);
 }
 
+/* By the numbers — fully centered section */
+.numbers-section {
+  text-align: center;
+}
+
+.numbers-section__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.numbers-section__header {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.numbers-section__header h2 {
+  text-align: center;
+}
+
+.numbers-section__header p {
+  color: var(--slate);
+  text-align: center;
+  margin: 0;
+}
+
 /* Stats band */
 .stats-band {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.5rem 3.5rem;
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
   text-align: center;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-items: center;
+}
+
+.stats-band .stat-item {
+  flex: 0 1 200px;
+  width: 200px;
+  max-width: 100%;
+  text-align: center;
 }
 
 .stats-band .stat-value {
@@ -1032,6 +1069,13 @@ p:last-child { margin-bottom: 0; }
   font-weight: 700;
   color: var(--gold);
   line-height: 1;
+  text-align: center;
+}
+
+.stats-band .stat-value::after {
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--gold);
 }
 
 .stats-band .stat-label {
@@ -1039,6 +1083,7 @@ p:last-child { margin-bottom: 0; }
   color: var(--slate);
   margin-top: 0.5rem;
   line-height: 1.4;
+  text-align: center;
 }
 
 /* Case study */
@@ -1287,7 +1332,6 @@ p:last-child { margin-bottom: 0; }
   .situation-grid,
   .platform-grid,
   .playbook-grid,
-  .stats-band,
   .case-study-stats,
   .dashboard-preview,
   .leader-card {
