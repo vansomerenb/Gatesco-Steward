@@ -22,7 +22,7 @@ Open http://localhost:8080
 
 - **Brand name**: Currently "Gatesco Steward Partners" — update across HTML files if you choose a different subsidiary name.
 - **Contact email**: `info@gatescosp.com` (used site-wide).
-- **Form**: Contact form is client-side demo only; connect to Formspree, Netlify Forms, or your CRM for production.
+- **Form**: Contact form posts via [FormSubmit](https://formsubmit.co) to `info@gatescosp.com`. On first use, FormSubmit emails that inbox an activation link — confirm it before live submissions arrive.
 - **Images**: Stock photos (Pexels/Unsplash) styled for Houston Class B/C garden-style exteriors and modest apartment interiors. Replace with your own property photography for production.
 
 ## Deployment

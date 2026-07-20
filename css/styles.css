@@ -786,6 +786,20 @@ p:last-child { margin-bottom: 0; }
   resize: vertical;
 }
 
+.form-status {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.form-status--success {
+  color: #1a5c3a;
+}
+
+.form-status--error {
+  color: #8b1e1e;
+}
+
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;

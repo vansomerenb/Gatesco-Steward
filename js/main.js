@@ -48,20 +48,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 
-  // Demo contact form
-  const form = document.querySelector('.contact-form form');
+  // Contact form → FormSubmit → info@gatescosp.com
+  const form = document.querySelector('#contact-form') || document.querySelector('.contact-form form');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('button[type="submit"]');
+      const status = document.getElementById('form-status');
       const original = btn.textContent;
-      btn.textContent = 'Message Sent — We Will Be In Touch';
+      const endpoint = form.getAttribute('action') || 'https://formsubmit.co/ajax/info@gatescosp.com';
+
       btn.disabled = true;
-      setTimeout(() => {
+      btn.textContent = 'Sending…';
+      if (status) {
+        status.hidden = true;
+        status.textContent = '';
+        status.className = 'form-status';
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+          },
+          body: new FormData(form),
+        });
+
+        const data = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Unable to send message. Please email info@gatescosp.com.');
+        }
+
+        btn.textContent = 'Message Sent — We Will Be In Touch';
         form.reset();
+        if (status) {
+          status.hidden = false;
+          status.className = 'form-status form-status--success';
+          status.textContent = 'Thank you. Your message was sent to our team.';
+        }
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+          if (status) status.hidden = true;
+        }, 5000);
+      } catch (err) {
         btn.textContent = original;
         btn.disabled = false;
-      }, 4000);
+        if (status) {
+          status.hidden = false;
+          status.className = 'form-status form-status--error';
+          status.textContent =
+            err.message || 'Something went wrong. Please email info@gatescosp.com directly.';
+        }
+      }
     });
   }
 

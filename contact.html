@@ -68,7 +68,10 @@
         </div>
 
         <div class="contact-form">
-          <form action="#" method="post">
+          <form action="https://formsubmit.co/ajax/info@gatescosp.com" method="POST" id="contact-form">
+            <input type="hidden" name="_subject" value="New consultation request — Gatesco Steward Partners">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required autocomplete="name">
@@ -86,6 +89,7 @@
               <textarea id="message" name="message" rows="6" placeholder="Tell us about your distressed asset, receivership assignment, or lender-controlled portfolio..." required></textarea>
             </div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Request a Consultation</button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
           </form>
         </div>
       </div>
