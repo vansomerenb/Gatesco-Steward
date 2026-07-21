@@ -833,6 +833,18 @@ p:last-child { margin-bottom: 0; }
   color: var(--white);
 }
 
+.footer-logo {
+  display: inline-block;
+  max-width: min(280px, 100%);
+}
+
+.footer-logo-img {
+  display: block;
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+}
+
 .footer-brand p {
   font-size: 0.95rem;
   margin-top: 1rem;
