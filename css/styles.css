@@ -126,13 +126,13 @@ p:last-child { margin-bottom: 0; }
   flex-direction: column;
   gap: 0.1rem;
   flex-shrink: 0;
-  max-width: min(280px, 52vw);
+  max-width: min(340px, 58vw);
 }
 
 .logo-img {
   display: block;
   width: 100%;
-  max-width: 280px;
+  max-width: 340px;
   height: auto;
 }
 
