@@ -13,7 +13,7 @@
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "Source Sans 3", system-ui, sans-serif;
   --max-width: 1200px;
-  --header-height: 80px;
+  --header-height: 96px;
   --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -123,17 +123,23 @@ p:last-child { margin-bottom: 0; }
 
 .logo {
   display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-  flex-shrink: 0;
-  max-width: min(420px, 62vw);
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
+  height: 100%;
+  max-width: min(560px, 58vw);
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 
 .logo-img {
   display: block;
-  width: 100%;
-  max-width: 420px;
-  height: auto;
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .logo-name {
