@@ -1,0 +1,8 @@
+# https://gatescosp.com
+User-agent: *
+Allow: /
+
+# Brand-kit browser (not a public marketing page)
+Disallow: /images/logos/index.html
+
+Sitemap: https://gatescosp.com/sitemap.xml

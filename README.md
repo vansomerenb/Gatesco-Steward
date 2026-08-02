@@ -2,10 +2,13 @@
 
 Professional marketing website for the Gatesco, Inc. subsidiary focused on multifamily operations property management for lender-owned and foreclosed assets in Greater Houston. Messaging emphasizes Gatesco as a vertically integrated Houston operator of 10,000+ units (PM through full building rehab).
 
+**Live site:** https://gatescosp.com  
+**Fallback (GitHub Pages):** https://vansomerenb.github.io/Gatesco-Steward/
+
 ## Preview locally
 
 ```bash
-cd ~/Desktop/gatesco-steward-partners
+cd gatesco-steward-partners
 python3 -m http.server 8080
 ```
 
@@ -18,23 +21,43 @@ Open http://localhost:8080
 - `property-management.html`, `asset-management.html`, `construction.html`, `financial-reporting.html`
 - `about.html`, `contact.html`
 
+## Site configuration files
+
+| File | Purpose |
+|------|---------|
+| `CNAME` | GitHub Pages custom domain (`gatescosp.com`, apex canonical) |
+| `robots.txt` | Crawler rules + sitemap pointer |
+| `sitemap.xml` | All main marketing URLs |
+| `.nojekyll` | Skip Jekyll processing on GitHub Pages |
+| `DEPLOYMENT-SECURITY.md` | Full SSL, DNS, and Cloudflare checklist |
+
+## Contact form
+
+Posts via [FormSubmit](https://formsubmit.co) AJAX to `info@gatescosp.com`.
+
+Spam protection layers:
+
+- Honeypot (`_honey`) + FormSubmit phrase blacklist
+- Client-side minimum fill time and submit rate limit (`js/main.js`)
+- Optional Cloudflare Turnstile via `data-turnstile-sitekey` on the form
+
+On first use, FormSubmit emails that inbox an activation link — confirm it before live submissions arrive.
+
 ## Customization
 
 - **Brand name**: Currently "Gatesco Steward Partners" — update across HTML files if you choose a different subsidiary name.
 - **Contact email**: `info@gatescosp.com` (used site-wide).
-- **Form**: Contact form posts via [FormSubmit](https://formsubmit.co) to `info@gatescosp.com`. On first use, FormSubmit emails that inbox an activation link — confirm it before live submissions arrive.
-- **Images**: Stock photos (Pexels/Unsplash) styled for Houston Class B/C garden-style exteriors and modest apartment interiors. Replace with your own property photography for production.
+- **Images**: Replace stock photography with property photos for production as needed.
 
 ## Deployment
 
-**Live site:** https://gatescosp.com  
-**Fallback (GitHub Pages):** https://vansomerenb.github.io/Gatesco-Steward/
-
-The site is a static site hosted on **GitHub Pages** from this repo (`main` branch, root).
+Static site on **GitHub Pages** from this repo (`main` branch, root).
 
 ### Custom domain (gatescosp.com)
 
-Domain is registered at **Squarespace Domains**. DNS must point at GitHub Pages:
+Canonical host is the **apex** (`gatescosp.com`). `www` should redirect to apex.
+
+DNS at the registrar (Squarespace Domains) must point at GitHub Pages:
 
 | Type | Host | Value |
 |------|------|--------|
@@ -44,9 +67,14 @@ Domain is registered at **Squarespace Domains**. DNS must point at GitHub Pages:
 | A | `@` | `185.199.111.153` |
 | CNAME | `www` | `vansomerenb.github.io` |
 
-1. Squarespace → Domains → `gatescosp.com` → DNS / Advanced settings  
-2. Remove default Squarespace parking A/CNAME records for `@` and `www`  
+1. Squarespace → Domains → `gatescosp.com` → DNS  
+2. Remove conflicting parking records for `@` and `www`  
 3. Add the records above  
-4. In GitHub: repo **Settings → Pages → Custom domain** = `gatescosp.com`, enable **Enforce HTTPS** once DNS verifies  
+4. GitHub → repo **Settings → Pages → Custom domain** = `gatescosp.com`  
+5. When DNS check is green, enable **Enforce HTTPS**  
 
-`CNAME` in the repo root keeps the custom domain wired after deploys.
+If browsers show a certificate for `*.github.io` instead of `gatescosp.com`, re-save the custom domain and follow **`DEPLOYMENT-SECURITY.md`** (section 2).
+
+### Security headers
+
+GitHub Pages cannot set HSTS / CSP / frame-options headers. Preferred approach: put **Cloudflare** in front and add response headers there. Full steps are in **`DEPLOYMENT-SECURITY.md`**.

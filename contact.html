@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Contact Gatesco Steward Partners for distressed multifamily operations, receivership, REO stabilization, and lender-controlled portfolio assignments in Greater Houston.">
   <title>Contact | Gatesco Steward Partners</title>
+  <link rel="canonical" href="https://gatescosp.com/contact.html">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data:; connect-src 'self' https://formsubmit.co; form-action https://formsubmit.co; frame-src https://challenges.cloudflare.com; upgrade-insecure-requests">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
@@ -67,26 +70,54 @@
         </div>
 
         <div class="contact-form">
-          <form action="https://formsubmit.co/ajax/info@gatescosp.com" method="POST" id="contact-form">
+          <!--
+            Spam protection (layered):
+            1. FormSubmit honeypot (_honey) + phrase blacklist
+            2. Client-side timing / honeypot checks in js/main.js
+            3. Optional Cloudflare Turnstile — set data-turnstile-sitekey on this form
+               and load the Turnstile script (see DEPLOYMENT-SECURITY.md)
+            Note: FormSubmit’s visual reCAPTCHA does not run on the AJAX endpoint;
+            keep AJAX UX and rely on the layers above (+ Cloudflare bot controls).
+          -->
+          <form
+            action="https://formsubmit.co/ajax/info@gatescosp.com"
+            method="POST"
+            id="contact-form"
+            data-min-fill-ms="3000"
+            data-turnstile-sitekey=""
+          >
             <input type="hidden" name="_subject" value="New consultation request — Gatesco Steward Partners">
             <input type="hidden" name="_template" value="table">
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <!-- FormSubmit ignores submissions containing these phrases -->
+            <input type="hidden" name="_blacklist" value="crypto, cryptocurrency, seo package, buy followers, viagra, casino, loan offer, make money fast, weight loss, adult dating">
+            <!-- Honeypot: leave empty. Hidden via CSS class (not only display:none inline). -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="website_url">Website</label>
+              <input type="text" id="website_url" name="_honey" tabindex="-1" autocomplete="off">
+            </div>
+            <!-- Secondary decoy (not sent to FormSubmit as _honey; discarded client-side if filled) -->
+            <div class="hp-field" aria-hidden="true">
+              <label for="company_fax">Fax</label>
+              <input type="text" id="company_fax" name="company_fax" tabindex="-1" autocomplete="off">
+            </div>
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" required autocomplete="name">
+              <input type="text" id="name" name="name" required autocomplete="name" maxlength="120">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" required autocomplete="email">
+              <input type="email" id="email" name="email" required autocomplete="email" maxlength="254">
             </div>
             <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" required autocomplete="tel">
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" maxlength="40">
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" rows="6" placeholder="Tell us about your distressed asset, receivership assignment, or lender-controlled portfolio..." required></textarea>
+              <textarea id="message" name="message" rows="6" placeholder="Tell us about your distressed asset, receivership assignment, or lender-controlled portfolio..." required maxlength="5000"></textarea>
             </div>
+            <!-- Cloudflare Turnstile mounts here when data-turnstile-sitekey is set -->
+            <div id="cf-turnstile" class="cf-turnstile-slot" hidden></div>
             <button type="submit" class="btn btn-primary" style="width: 100%;">Request a Consultation</button>
             <p id="form-status" class="form-status" role="status" aria-live="polite" hidden></p>
           </form>
